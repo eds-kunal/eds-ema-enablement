@@ -1,9 +1,8 @@
 .faq-list .faq-list-item {
-  border-bottom: 1px solid #dadada;
-}
-
-.faq-list .faq-list-item:first-of-type {
-  border-top: 1px solid #dadada;
+  margin-bottom: 12px;
+  border: 1px solid var(--color-border, #ddd8cf);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .faq-list .faq-list-question {
@@ -11,9 +10,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 0;
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
+  padding: 16px 24px;
+  font-family: var(--body-font-family);
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   list-style: none;
@@ -36,9 +35,8 @@
 }
 
 .faq-list .faq-list-answer {
-  padding: 0 0 20px;
+  padding: 0 24px 20px;
   font-size: var(--body-font-size-s);
-  max-width: 60ch;
 }
 
 .faq-list .faq-list-answer > :first-child {

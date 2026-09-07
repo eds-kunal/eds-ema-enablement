@@ -17,8 +17,8 @@
 .team-profile .team-profile-name {
   margin-top: 12px;
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-m);
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.25;
 }
 
