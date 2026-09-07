@@ -1,0 +1,43 @@
+.team-profile > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.team-profile .team-profile-intro {
+  line-height: 0;
+}
+
+.team-profile .team-profile-intro img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.team-profile .team-profile-name {
+  margin-top: 12px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-m);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.team-profile .team-profile-bio > :first-child {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  .team-profile > div {
+    flex-direction: row;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .team-profile .team-profile-intro {
+    flex: 0 0 280px;
+  }
+
+  .team-profile .team-profile-bio {
+    flex: 1;
+  }
+}

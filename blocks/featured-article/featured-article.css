@@ -1,0 +1,38 @@
+.featured-article > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.featured-article .featured-article-image {
+  line-height: 0;
+}
+
+.featured-article .featured-article-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.featured-article .featured-article-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-article .featured-article-body h2 {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  .featured-article > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .featured-article .featured-article-image,
+  .featured-article .featured-article-body {
+    flex: 1;
+  }
+}
