@@ -1,0 +1,61 @@
+/*
+ * social-links — inline share buttons (icon + visible label). The icon is an
+ * inline SVG injected by social-links.js from the link label; no dependency on
+ * the href value.
+ */
+
+/* wknd: article share buttons are icon-only 48px dark squares, right-aligned
+   under the author byline (no visible text labels). */
+.social-links .social-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-links .social-links-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--text-color);
+  color: #ebebeb;
+  text-decoration: none;
+}
+
+.social-links .social-links-link:hover {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* icon only — hide the visible text label (kept for a11y via aria-label) */
+.social-links .social-links-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.social-links .social-links-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+
+/* Each icon in scripts/social-icons.js carries its own fill/stroke (solid glyphs
+   use fill=currentColor, instagram uses fill=none stroke=currentColor); do NOT
+   set fill here or it would erase instagram's outline. */
+.social-links .social-links-icon svg {
+  width: 100%;
+  height: 100%;
+}

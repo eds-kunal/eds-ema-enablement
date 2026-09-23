@@ -4,30 +4,31 @@
 
 .ticker .ticker-track {
   display: flex;
+  gap: 32px;
   width: max-content;
-  animation: ticker-scroll 30s linear infinite;
+  animation: ticker-scroll 40s linear infinite;
 }
 
 .ticker .ticker-group {
   display: flex;
   flex-shrink: 0;
+  gap: 32px;
+  align-items: center;
 }
 
 .ticker .ticker-item {
   display: inline-flex;
   align-items: center;
-  padding: 0 0.6em;
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-l);
-  font-weight: 600;
-  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 700;
   white-space: nowrap;
 }
 
 .ticker .ticker-item::after {
-  content: "•";
-  margin-left: 1.2em;
-  opacity: 0.4;
+  content: "·";
+  margin-left: 32px;
+  color: var(--color-accent, #e8651a);
 }
 
 @keyframes ticker-scroll {

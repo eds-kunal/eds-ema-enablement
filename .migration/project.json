@@ -1,9 +1,11 @@
 {
+  "type": "da",
   "sites": {
     "eds-ema-enablement": {
       "previewOrg": "eds-kunal",
       "previewSite": "eds-ema-enablement",
-      "contentHostUrl": "https://content.da.live/eds-kunal/eds-ema-enablement/"
+      "contentHostUrl": "https://content.da.live/eds-kunal/eds-ema-enablement/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
     }
   }
 }

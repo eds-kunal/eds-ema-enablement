@@ -1,0 +1,29 @@
+/*
+ * faq-sidebar — "Need more help?" contact box. A light panel; on desktop it
+ * sits in the right column of the FAQ two-column grid (see .section.faq).
+ */
+
+.faq-sidebar {
+  padding: 24px;
+  border-top: 2px solid var(--accent-color);
+  background-color: var(--light-color);
+}
+
+/* "Need more help?" label — a <p> (not a heading) styled like the original h3 */
+.faq-sidebar .faq-sidebar-label {
+  margin-top: 0;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.faq-sidebar p {
+  margin-bottom: 0;
+}
+
+/* underline links so they're distinguishable from body text by more than color */
+.faq-sidebar a:any-link {
+  color: var(--link-color);
+  text-decoration: underline;
+}
