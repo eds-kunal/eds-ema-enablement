@@ -1,0 +1,10 @@
+{
+  "variantName": "columns-specs",
+  "baseBlock": "columns",
+  "visualCharacteristics": "Adventure specifications sidebar. A vertical list of label/value pairs (e.g. Activity / Surfing), each row separated by a horizontal divider. Labels are uppercase and bold on the left; values align right.",
+  "contentPattern": "One row per specification. Each row has two cells: a label cell and a value cell.",
+  "usage": "Structured spec/attribute lists that recur identically across a set of detail pages (e.g. adventure specs).",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["columns-specs"]
+}

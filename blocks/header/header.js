@@ -1,4 +1,3 @@
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -113,9 +112,14 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  // load nav fragment — metadata-independent: /content first (local), then root (DA/EDS prod)
+  let navPath = '/content/nav';
+  try {
+    const resp = await fetch(`${navPath}.plain.html`);
+    if (!resp.ok) navPath = '/nav';
+  } catch (e) {
+    navPath = '/nav';
+  }
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM

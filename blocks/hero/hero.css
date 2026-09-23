@@ -1,37 +1,83 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
-}
+/* Hero — WKND "image-bottom" teaser: full-bleed photo with an overlapping
+   white content card (heading + description + yellow CTA).
+   Values extracted from wknd.site computed styles; colors/fonts mapped to brand tokens. */
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+/* Row 1 = image cell (bare <picture> gets wrapped in <p> by EDS) */
+.hero > div:first-child {
+  margin: 0;
+  line-height: 0;
+}
+
+.hero > div:first-child p {
+  margin: 0;
+  line-height: 0;
 }
 
 .hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  display: block;
+  width: 100%;
 }
 
 .hero img {
-  object-fit: cover;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1; /* source image 1280x640 */
+  object-fit: cover;
+}
+
+/* Row 2 = white content card, overlaps bottom of the image */
+.hero > div:last-child {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin: -48px auto 0;
+  padding: 18px 28px;
+  background-color: var(--background-color);
+  min-height: 180px;
+}
+
+.hero h2 {
+  margin: 18px 0 0;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl); /* 36px desktop */
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+  text-transform: none;
+}
+
+.hero p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m); /* 18px */
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text-color);
+}
+
+/* CTA "SEE TRIP" — yellow rectangular button (inherits global a.button base) */
+.hero .button-container {
+  margin: 18px 0;
+}
+
+.hero a.button:any-link {
+  padding: 14px 35px;
+  font-size: var(--body-font-size-xs); /* 14px */
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 @media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
+  /* card insets from image edges and pulls up over the photo */
+  .hero > div:last-child {
+    width: calc(100% - 88px);
+    margin-top: -180px;
+    padding: 0 28px;
   }
 }

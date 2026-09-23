@@ -1,0 +1,37 @@
+:root {
+  /* WKND brand fonts */
+  --heading-font-family: "Asar", georgia, "Times New Roman", times, serif;
+  --body-font-family: "Source Sans Pro", "Helvetica Neue", helvetica, arial, sans-serif;
+  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono", monospace;
+
+  /* WKND brand colors */
+  --background-color: #fff;
+  --light-color: #f8f8f8;
+  --dark-color: #202020;
+  --text-color: #202020;
+  --link-color: #202020;
+  --link-hover-color: #000;
+
+  /* WKND signature yellow CTA */
+  --cta-color: #ffea00;
+  --cta-text-color: #202020;
+  --cta-hover-color: #f5d800;
+
+  /* spacing */
+  --section-padding: 48px;
+  --nav-height: 88px;
+  --content-max-width: 1200px;
+
+  /* heading sizes — desktop */
+  --heading-font-size-xxl: 48px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* body sizes */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+}

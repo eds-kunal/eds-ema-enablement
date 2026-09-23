@@ -1,0 +1,75 @@
+/* tabs-detail — design migrated from wknd.site (bali-surf-camp)
+   Tab buttons: uppercase text row, active tab = dark fill + white text.
+   Panel: borderless, content flows directly below the tab row. */
+
+.tabs-detail .tabs-detail-list {
+  display: flex;
+  flex-direction: row;
+  margin: 18px 0;
+  padding: 0;
+  max-width: 100%;
+  list-style: none;
+  overflow-x: auto;
+}
+
+.tabs-detail .tabs-detail-list button {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  line-height: 21px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tabs-detail .tabs-detail-list button p {
+  margin: 0;
+}
+
+.tabs-detail .tabs-detail-list button[aria-selected="true"] {
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  cursor: default;
+}
+
+.tabs-detail .tabs-detail-panel {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.tabs-detail .tabs-detail-panel[aria-hidden="true"] {
+  display: none;
+}
+
+.tabs-detail .tabs-detail-panel h3 {
+  margin: 27px 0 13.5px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 36px;
+  color: var(--text-color);
+}
+
+.tabs-detail .tabs-detail-panel p {
+  margin: 0 0 13.5px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: 45px;
+  color: var(--text-color);
+}
+
+.tabs-detail .tabs-detail-panel img {
+  max-width: 100%;
+  height: auto;
+}

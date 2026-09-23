@@ -1,4 +1,3 @@
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 /**
@@ -6,9 +5,14 @@ import { loadFragment } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment
-  const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  // load footer fragment — metadata-independent: /content first (local), then root (DA/EDS prod)
+  let footerPath = '/content/footer';
+  try {
+    const resp = await fetch(`${footerPath}.plain.html`);
+    if (!resp.ok) footerPath = '/footer';
+  } catch (e) {
+    footerPath = '/footer';
+  }
   const fragment = await loadFragment(footerPath);
 
   // decorate footer DOM

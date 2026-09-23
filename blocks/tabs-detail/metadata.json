@@ -1,0 +1,10 @@
+{
+  "variantName": "tabs-detail",
+  "baseBlock": "tabs",
+  "visualCharacteristics": "Interactive tabbed content switcher. A horizontal row of tab buttons above a bordered content panel; the selected tab's panel is visible while the others are hidden. Panels can hold paragraphs, images, and lists.",
+  "contentPattern": "One row per tab. Each row has two cells: a tab label cell and a panel content cell.",
+  "usage": "Grouping related content (e.g. Overview / Itinerary / What to Bring) into switchable panels on detail pages.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["tabs-detail"]
+}

@@ -1,0 +1,85 @@
+/* cards-secure — "Members Only" gated teaser cards.
+   Values extracted from WKND source (.teaser.cmp-teaser--secure).
+   Image-topped vertical card: uppercase title, muted description,
+   grey "Read More" pill treatment for gated content. */
+
+.cards-secure > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (width >= 900px) {
+  .cards-secure > ul {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* card — no border/radius/shadow on source; transparent, left-aligned */
+.cards-secure > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  text-align: left;
+}
+
+/* image — full-width, 1.8 aspect (360x200), cover */
+.cards-secure .cards-secure-card-image {
+  line-height: 0;
+}
+
+.cards-secure .cards-secure-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.8;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* text body */
+.cards-secure .cards-secure-card-body {
+  margin: 0;
+}
+
+/* title — Source Sans Pro uppercase, not the serif heading */
+.cards-secure .cards-secure-card-body h3 {
+  margin: 9px 0;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+/* description — muted grey */
+.cards-secure .cards-secure-card-body p {
+  margin: 0 0 13.5px;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  line-height: 24.5px;
+  color: #696969;
+}
+
+/* gated "Read More" treatment — grey pill, uppercase
+   (source .cmp-teaser__action-container).
+   Applies if an author adds a Read More link to the card body. */
+.cards-secure .cards-secure-card-body a:any-link {
+  display: inline-block;
+  margin: 14px 0;
+  padding: 7px 14px;
+  background-color: #ebebeb;
+  color: #696969;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+}
