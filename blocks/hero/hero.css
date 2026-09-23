@@ -52,6 +52,7 @@
   text-transform: none;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .hero p {
   margin: 0;
   font-family: var(--body-font-family);

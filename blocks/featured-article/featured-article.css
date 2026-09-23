@@ -47,6 +47,7 @@
 }
 
 /* description paragraph */
+/* stylelint-disable-next-line no-descending-specificity */
 .featured-article .featured-article-body p {
   margin: 0;
   font-size: 14px;

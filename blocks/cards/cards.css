@@ -8,8 +8,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 14px;
-  row-gap: 32px;
+  gap: 32px 14px;
 }
 
 .cards > ul > li {

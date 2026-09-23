@@ -61,6 +61,7 @@
   color: var(--text-color);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .tabs-detail .tabs-detail-panel p {
   margin: 0 0 13.5px;
   font-family: var(--body-font-family);

@@ -1,20 +1,168 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+/* WKND footer — values extracted from https://wknd.site/us/en.html */
+
+footer.footer-wrapper {
+  background-color: var(--dark-color);
 }
 
+footer .footer {
+  background-color: var(--dark-color);
+  color: #ebebeb;
+  font-family: var(--body-font-family);
+}
+
+/* content container */
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
-}
-
-footer .footer p {
-  margin: 0;
+  max-width: 1280px;
+  padding: 16px 24px 24px;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 16px 72px 24px;
+  }
+}
+
+footer .footer a:any-link {
+  color: #ebebeb;
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* top row: logo | nav | follow-us — stacks on mobile, row on desktop */
+footer .footer .default-content-wrapper {
+  margin: 0;
+}
+
+/* logo section */
+footer .footer .section:first-child p {
+  margin: 0;
+  line-height: 0;
+}
+
+footer .footer .section:first-child img {
+  width: 128px;
+  height: auto;
+  display: block;
+}
+
+/* footer nav list */
+footer .footer nav ul,
+footer .footer .section:nth-child(2) ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer .section:nth-child(2) ul > li > a {
+  display: inline-block;
+  padding: 15px 17px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Follow Us heading */
+footer .footer h4 {
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  color: #ebebeb;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  line-height: 24px;
+  margin: 21px 0;
+}
+
+/* social row */
+footer .footer .section:nth-child(3) ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1px;
+}
+
+footer .footer .section:nth-child(3) ul > li > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #ebebeb;
+  color: var(--dark-color);
+  font-size: 14px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+}
+
+footer .footer .section:nth-child(3) ul > li > a:hover {
+  background-color: #fff;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+/* copyright block (last section) */
+footer .footer .section:last-child p {
+  margin: 0 0 13.5px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #f7f7f7;
+  line-height: 15px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+footer .footer .section:last-child a:any-link {
+  color: #f7f7f7;
+  text-decoration: underline;
+}
+
+/* desktop: logo / nav / follow-us on one row, copyright full width below */
+@media (width >= 900px) {
+  footer .footer > div {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  footer .footer .section:first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  footer .footer .section:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  footer .footer .section:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  footer .footer .section:nth-child(3) .default-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  footer .footer .section:nth-child(3) h4 {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  footer .footer .section:last-child {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }

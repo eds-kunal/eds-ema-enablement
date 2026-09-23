@@ -55,6 +55,7 @@
   height: 100%;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .carousel-hero .carousel-hero-slide .carousel-hero-slide-image img {
   aspect-ratio: 16 / 9;
   object-fit: cover;
