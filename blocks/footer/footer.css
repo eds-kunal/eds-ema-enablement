@@ -1,20 +1,181 @@
 footer {
-  background-color: var(--light-color);
+  background-color: var(--text-color);
+  color: #ebebeb;
   font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
+footer .footer {
+  max-width: 1680px;
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 16px 24px 24px; /* wknd: 16px top / 24px bottom (was 40px top, too tall) */
 }
 
 footer .footer p {
+  margin: 0 0 12px;
+  color: #ebebeb;
+}
+
+footer .footer a:any-link {
+  color: #ebebeb;
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* brand / logo — light wordmark on the dark background */
+footer .footer-brand img {
+  width: 128px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* footer nav */
+footer .footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+  text-transform: uppercase;
+  font-size: var(--heading-font-size-s);
+}
+
+/* social — icon glyphs inside light square boxes (matches wknd) */
+
+/* "Follow Us" label: a <p> (not a heading) to keep it out of the document
+   outline; styled to look like the original h4. */
+footer .footer-social .footer-social-label {
   margin: 0;
+
+  /* wknd "Follow Us": body font (Source Sans Pro), semibold 600, 16px,
+     UPPERCASE, #ebebeb. */
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ebebeb;
+  white-space: nowrap;
+}
+
+footer .footer-social ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .footer-social a:any-link {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background-color: #ebebeb;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
+
+  /* hide the text label; the icon is the background image */
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  overflow: hidden;
+}
+
+footer .footer-social a:hover {
+  background-color: #fff;
+  text-decoration: none;
+}
+
+/* icons keyed off the network class footer.js adds from the link label
+   (authored hrefs are "/" placeholders, so href matching cannot be used) */
+footer .footer-social a.footer-social-facebook {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23202020'%3E%3Cpath d='M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a.footer-social-twitter {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23202020'%3E%3Cpath d='M23 4.9c-.8.35-1.7.6-2.6.7a4.5 4.5 0 0 0 2-2.5c-.9.5-1.9.9-2.9 1.1a4.5 4.5 0 0 0-7.7 4.1A12.8 12.8 0 0 1 2.5 3.6a4.5 4.5 0 0 0 1.4 6 4.4 4.4 0 0 1-2-.6v.06a4.5 4.5 0 0 0 3.6 4.4 4.5 4.5 0 0 1-2 .08 4.5 4.5 0 0 0 4.2 3.1A9 9 0 0 1 1 18.6a12.7 12.7 0 0 0 6.9 2c8.3 0 12.8-6.9 12.8-12.8v-.6c.9-.6 1.6-1.4 2.3-2.3z'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a.footer-social-instagram {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23202020' stroke-width='2'%3E%3Crect x='2' y='2' width='20' height='20' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Ccircle cx='17.5' cy='6.5' r='1' fill='%23202020' stroke='none'/%3E%3C/svg%3E");
+}
+
+/* legal / attribution — matches wknd's computed 12px / rgb(247,247,247),
+   not the grey (#aaa) this used to be. */
+footer .footer-legal {
+  margin-top: 24px;
+  padding-top: 16px;
+  color: #f7f7f7;
+  font-size: 12px;
+  line-height: 1.25; /* wknd: 15px for 12px legal text (was 1.6, too airy) */
+}
+
+footer .footer-legal p {
+  color: #f7f7f7;
+}
+
+footer .footer-legal a:any-link {
+  color: #f7f7f7;
+  text-decoration: underline;
+}
+
+footer .footer-legal a:hover {
+  color: #fff;
 }
 
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  /* wknd insets footer content ~152px each side (content centred to ~1136px),
+     not the near-edge 32px gutter we had. Cap to 1136px and centre. */
+  footer .footer {
+    max-width: 1136px;
+    padding: 16px 0 24px; /* wknd: 16px top / 24px bottom */
+  }
+
+  /* wknd: brand, nav and social sit in one row across the top; the legal band
+     spans the full width beneath them. The four sections live inside the
+     .footer-content wrapper built by footer.js. */
+  footer .footer-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      'brand nav social'
+      'legal legal legal';
+    align-items: center; /* wknd: logo, nav and social vertically centred in the top row */
+    column-gap: 48px;
+  }
+
+  footer .footer-brand { grid-area: brand; }
+  footer .footer-nav { grid-area: nav; }
+
+  /* legal band spans full width below; stretch it back to normal top-alignment
+     so align-items:center on the grid doesn't shift the block */
+  footer .footer-legal {
+    grid-area: legal;
+    align-self: stretch;
+  }
+
+  /* social column sits at the right end of the top row; "Follow Us" label and
+     the icon row sit side-by-side (wknd: label left of the icons, centred
+     vertically), right-aligned within the column. */
+  footer .footer-social {
+    grid-area: social;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-self: end;
+  }
+
+  footer .footer-social ul {
+    justify-content: flex-start;
+  }
+
+  footer .footer-nav ul {
+    gap: 32px;
+    margin-top: 0;
   }
 }

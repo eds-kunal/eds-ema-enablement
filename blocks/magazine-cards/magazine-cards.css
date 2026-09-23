@@ -1,0 +1,74 @@
+/* magazine-cards — article card rail; shares the adventure-cards look. */
+
+/* wknd's Magazine listing page constrains its content column so text/cards
+   start 152px from each edge and are 1136px wide at 1440px — not the sitewide
+   1680px width. The section wrapper's 32px side padding sits OUTSIDE its
+   max-width (content-box), so a 1136px max-width lands the content at exactly
+   152px from each edge and 1136px wide — matching the source. The page is a
+   single section carrying the magazine blocks (columns-featured +
+   magazine-cards + members-only), so scope the column to that section: every
+   wrapper (h1, featured article, card grid, members-only) aligns uniformly
+   like the source. */
+main > .section.magazine-cards-container > div {
+  max-width: 1136px;
+}
+
+.magazine-cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  gap: 24px;
+}
+
+.magazine-cards > ul > li {
+  border: 1px solid #dadada;
+  background-color: var(--background-color);
+}
+
+.magazine-cards .magazine-cards-card-image {
+  line-height: 0;
+}
+
+.magazine-cards .magazine-cards-card-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.magazine-cards .magazine-cards-card-body {
+  margin: 16px;
+}
+
+/* card title — uppercase sans-serif, matching wknd image cards */
+.magazine-cards .magazine-cards-card-body h3 {
+  margin: 0 0 8px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.magazine-cards .magazine-cards-card-body h3 a:any-link {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* wknd: card titles stay dark on hover (no blue --link-color) */
+.magazine-cards .magazine-cards-card-body h3 a:hover {
+  color: var(--text-color);
+}
+
+.magazine-cards .magazine-cards-card-body p {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+}
+
+/* "All Articles" CTA — spacing only; the button appearance comes from the
+   site-wide a.button.primary rule in styles.css (flat yellow WKND CTA). */
+.magazine-cards .magazine-cards-more,
+.magazine-cards + .button-wrapper {
+  margin: 24px 0 0;
+}

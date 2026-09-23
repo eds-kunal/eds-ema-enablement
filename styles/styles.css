@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -10,65 +12,8 @@
  * governing permissions and limitations under the License.
  */
 
-:root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
-
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
-
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
-
-  /* nav height */
-  --nav-height: 64px;
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
-}
+/* Core design tokens (colors, fonts, responsive heading + body sizes, spacing)
+   live in brand.css, imported above — extracted from wknd.site. */
 
 body {
   display: none;
@@ -77,7 +22,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.75; /* wknd: 31.5px for 18px body text */
 }
 
 body.appear {
@@ -86,6 +31,32 @@ body.appear {
 
 header {
   height: var(--nav-height);
+}
+
+/* Desktop: make the header a sticky, self-sizing bar that stays pinned while
+   scrolling and compacts in lockstep with the inner nav grid (see
+   header.css .nav-scrolled). It sizes from its content (height:auto) so when
+   the inner grid shrinks 125px → ~74px the whole header shrinks too, rather
+   than a hardcoded height that leaves a dead gap. */
+@media (width >= 900px) {
+  header {
+    position: sticky;
+    top: 0;
+
+    /* above the carousel controls (z-index:2) so the full-bleed carousel's
+       prev/next buttons never paint over the sticky header while scrolling */
+    z-index: 10;
+    height: auto;
+  }
+}
+
+/* Contain the carousel's full-bleed 100vw breakout: 100vw counts the vertical
+   scrollbar's width, so the centred breakout overhangs each edge by ~half the
+   scrollbar and triggers a page-wide horizontal scrollbar. Clip the overflow on
+   main (overflow:clip, unlike hidden, does NOT create a scroll container, so the
+   sticky header keeps working). */
+main {
+  overflow-x: clip;
 }
 
 header .header,
@@ -106,10 +77,25 @@ h5,
 h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  color: var(--text-color);
+  line-height: 1.5;
   scroll-margin: 40px;
+}
+
+/* wknd: h1–h3 are serif (Asar) at normal weight */
+h1,
+h2,
+h3 {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+}
+
+/* wknd: h4–h6 are sans-serif (Source Sans Pro) at semibold */
+h4,
+h5,
+h6 {
+  font-family: var(--body-font-family);
+  font-weight: 600;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -118,6 +104,33 @@ h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+/* wknd: section-title headings carry a short yellow underline accent.
+   Scoped to default-content section titles so block/card headings are
+   unaffected (they live inside .block, not .default-content-wrapper).
+   Includes h1 page titles (e.g. FAQs) that sit in default content. */
+main .default-content-wrapper > h1::after,
+main .default-content-wrapper > h2::after {
+  content: "";
+  display: block;
+  width: 84px;
+  margin-top: 12px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+/* "Share this Adventure" is an <h2> for correct heading order (it sits under
+   the page <h1>), but wknd.site renders it as a small uppercase label, not a
+   section title. Restore that appearance and drop the yellow underline. */
+main h2#share-this-adventure {
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+main .default-content-wrapper > h2#share-this-adventure::after {
+  content: none;
+}
 
 p,
 dl,
@@ -179,12 +192,15 @@ button.button {
   max-width: 100%;
   margin: 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
+  border-radius: 0; /* wknd: flat, square-cornered buttons */
+  padding: 14px 35px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
   line-height: 1.25;
   text-decoration: none;
+  text-transform: uppercase; /* wknd: uppercase CTA labels */
+  letter-spacing: 0.02em;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -197,20 +213,21 @@ button.button:disabled {
   pointer-events: none;
 }
 
+/* wknd: primary CTA is the signature flat yellow rectangle with dark text */
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  border-color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--accent-color);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -251,20 +268,21 @@ button.button.secondary:disabled:focus-visible {
   color: var(--dark-color);
 }
 
-/* high-impact call-to-action */
+/* high-impact call-to-action — wknd yellow */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 a.button.accent:hover,
 a.button.accent:focus-visible,
 button.button.accent:hover,
 button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+  border-color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--accent-color);
 }
 
 a.button.accent[aria-disabled="true"],
@@ -301,7 +319,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1680px; /* wknd content container width */
   margin: auto;
   padding: 0 24px;
 }
@@ -322,4 +340,58 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Featured Article band: wknd's grey (#ebebeb) is scoped to the TEXT column
+   only (source: cmp-teaser__content) — the image column stays unstyled, not
+   grey. See blocks/columns-featured/columns-featured.css for that scoping;
+   this section-level rule only handles the vertical spacing. */
+main .section.light-grey {
+  margin: 0;
+  padding: 40px 0;
+}
+
+/* faq section: two columns on desktop — main flow (title + intro + accordion)
+   on the left, the "Need more help?" sidebar on the right. The section's
+   wrappers (default-content, accordion, faq-sidebar) are the grid items.
+   Mobile stacks (single column, default flow). */
+@media (width >= 900px) {
+  main .section.faq {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 48px;
+    align-items: start;
+    max-width: 1136px; /* match wknd's centred content column (152px gutters) */
+    margin: 40px auto;
+    padding: 0 32px;
+  }
+
+  /* left column: page title, intro, accordion — stacked in rows 1 & 2 */
+  main .section.faq > .default-content-wrapper,
+  main .section.faq > .accordion-wrapper {
+    grid-column: 1;
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  main .section.faq > .default-content-wrapper {
+    grid-row: 1;
+  }
+
+  main .section.faq > .accordion-wrapper {
+    grid-row: 2;
+  }
+
+  /* right column: sidebar pinned to the top of column 2, aligned with the page
+     title. Placed on row 1 with align-self:start so it doesn't stretch down. */
+  main .section.faq > .faq-sidebar-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    max-width: none;
+    padding: 0;
+  }
 }
