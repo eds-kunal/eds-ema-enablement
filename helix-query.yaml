@@ -1,0 +1,56 @@
+version: 1
+
+indices:
+  # Single site content index → /query-index.json.
+  # Both index-driven rails (adventure-cards, magazine-cards) fetch this one
+  # /query-index.json and filter client-side by path prefix.
+  #   - /us/en/adventures/**  → adventure-cards rail (homepage "All Trips")
+  #   - /us/en/magazine/**    → magazine-cards rail (homepage "Recent Articles")
+  # The listing pages themselves (/adventures, /magazine) are excluded.
+  content:
+    include:
+      - '/us/en/adventures/**'
+      - '/us/en/magazine/**'
+    exclude:
+      - '/us/en/adventures'
+      - '/us/en/magazine'
+    target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, 'content')
+      template:
+        select: head > meta[name="template"]
+        value: attribute(el, 'content')
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, 'content')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+
+  # Static/listing pages index → /pages-index.json (for sitemap coverage).
+  pages:
+    include:
+      - '/us/en'
+      - '/us/en/adventures'
+      - '/us/en/magazine'
+      - '/us/en/about-us'
+      - '/us/en/faqs'
+    target: /pages-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')

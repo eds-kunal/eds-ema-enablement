@@ -1,84 +1,67 @@
-/* Hero — WKND "image-bottom" teaser: full-bleed photo with an overlapping
-   white content card (heading + description + yellow CTA).
-   Values extracted from wknd.site computed styles; colors/fonts mapped to brand tokens. */
+/*
+ * hero — wknd "imagebottom" teaser: a full-bleed banner image with a white
+ * content card pulled up so it overlaps the bottom of the image. The headline
+ * sits on the opaque white card (dark serif), NOT over the photo.
+ *
+ * Authored structure (two rows):
+ *   .hero > div:first-child  → image
+ *   .hero > div:last-child   → content (heading, body, CTA)
+ */
+
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
 
 .hero {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  padding: 0;
 }
 
-/* Row 1 = image cell (bare <picture> gets wrapped in <p> by EDS) */
-.hero > div:first-child {
-  margin: 0;
-  line-height: 0;
-}
-
-.hero > div:first-child p {
-  margin: 0;
-  line-height: 0;
-}
-
-.hero picture {
+/* banner image — displayed in flow, full width (no longer a -z-index bg) */
+.hero > div:first-child picture,
+.hero > div:first-child img {
   display: block;
   width: 100%;
 }
 
-.hero img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1; /* source image 1280x640 */
+.hero > div:first-child img {
+  /* clamp the banner to wknd's ~640px height instead of the image's intrinsic
+     height (which rendered ~960-1114px on the homepage) */
+  height: clamp(320px, 44vw, 640px);
   object-fit: cover;
 }
 
-/* Row 2 = white content card, overlaps bottom of the image */
+/* opaque white content card, pulled up to overlap the image bottom */
 .hero > div:last-child {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  margin: -48px auto 0;
-  padding: 18px 28px;
+  max-width: 1136px;
+  margin: -56px auto 0;
+  padding: 16px 28px 24px;
   background-color: var(--background-color);
-  min-height: 180px;
 }
 
-.hero h2 {
-  margin: 18px 0 0;
+/* headline on the card is dark serif (default heading style), not white */
+.hero h1,
+.hero h2,
+.hero h3 {
+  margin-top: 0.4em;
+  color: var(--text-color);
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-xl); /* 36px desktop */
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--text-color);
-  text-transform: none;
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-.hero p {
-  margin: 0;
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m); /* 18px */
-  font-weight: 400;
-  line-height: 1.75;
-  color: var(--text-color);
-}
-
-/* CTA "SEE TRIP" — yellow rectangular button (inherits global a.button base) */
-.hero .button-container {
-  margin: 18px 0;
-}
-
-.hero a.button:any-link {
-  padding: 14px 35px;
-  font-size: var(--body-font-size-xs); /* 14px */
-  font-weight: 600;
-  text-transform: uppercase;
 }
 
 @media (width >= 900px) {
-  /* card insets from image edges and pulls up over the photo */
   .hero > div:last-child {
-    width: calc(100% - 88px);
-    margin-top: -180px;
-    padding: 0 28px;
+    /* wknd anchors the card TOP a fixed 180px above the image bottom (measured
+       identical on both hero instances: image_bottom − card_top = 180px). A
+       short card (no CTA, e.g. "Experience the world with us") then lands
+       near-flush with the image bottom, while a taller card (with a CTA, e.g.
+       "Climbing New Zealand") overhangs ~40px — both matching the source. At
+       -212px the short card's bottom floated ~37px ABOVE the image, leaving a
+       strip of photo showing below the white card. */
+    margin-top: -165px;
+    padding: 24px 28px 32px;
   }
 }
